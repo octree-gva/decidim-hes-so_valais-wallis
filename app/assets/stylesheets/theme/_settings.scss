@@ -1,0 +1,30 @@
+/**
+ * Generic theme template for customizing decidim. 
+ * This file is the only one directly in the theme directory, 
+ * and will manually import scss files in sub-directories. 
+ * As example, we propose the W3C design system structure. 
+ * - styles: small things that have not so much dependencies between each others.
+ * - components: things bigger, like cards
+ * - layout: all the overrides you want to do on layout (customizing grids, pages layout etc)
+ * 
+ * Variables are defined before foundation inclusion, in the decidim.scss file.
+ */
+@import 'util/util';
+
+
+
+/********************************************************
+  * Styles 
+  *********************************************************/
+@import "./0-styles/buttons";
+@import "./0-styles/typography";
+
+/********************************************************
+  * Components 
+  *********************************************************/
+@import "./10-components/cards";
+
+/********************************************************
+  * Layouts 
+  *********************************************************/
+/* Import your files, you've got it! */
