@@ -1,18 +1,20 @@
 version: "3"
 services:
   app:
-    build: .
+    build:
+      context: .
+      dockerfile: ./Dockerfile-dev
     environment:
-      - DB_HOST=pg
-      - SECRET_KEY_BASE="DEV-H}pwuJz;}Xe/C-!+C.X}jF[kz93,?tCJFM(FghytP@(<V)XL!.J@w<UeJ/,P-kgeKJ.:n){o4b9:p]bd^HTn3Jsc:c*j,}>(mX&!Lfk#kznmw\{U?mjXbvp@VTEC"
-      - DB_USERNAME=postgres
-      - DB_PASSWORD="DEV-_^+3{,ewt{_bgA@X!;(p,;na-}4x9h*Y"
-      - DB_DATABASE=decidim_quickstart
-      - RAILS_ENV=production
+      - DATABASE_HOST=pg
+      - SECRET_KEY_BASE="DEV-ahngae3ooCh5wool3xaefii8Neib7oc7mei2viejingaGhee7paephoneeThia6Ooshiexoab5ib1phirolah7tooMu3Oheixaigh7eeV5eef6Zei0dur9oth4zaicha"
+      - DATABASE_USERNAME=decidim
+      - DATABASE_PASSWORD=DEV-_^+3{,ewt{_bgA@X!;(p,;na-}4x9h*Y
+      - DATABASE_DATABASE=decidim_dev
+      - RAILS_ENV=development
+      - RACK_ENV=development
       - PORT=3000
-      - RAILS_MAX_THREAD=5
-      - RAILS_FORCE_SSL=false
-      - RAILS_SERVE_STATIC_FILES=false
+      - RAILS_MAX_THREADS=1
+      - RAILS_SERVE_STATIC_FILES=true
     ports:
       - 3000:3000
     depends_on:
@@ -21,15 +23,18 @@ services:
     networks:
       - private
       - default
+    volumes:
+      - ./app/assets/stylesheets/theme:/home/decidim/app/app/assets/stylesheets/theme
+      - ./app/views:/home/decidim/app/app/views
 
   pg:
-    image: postgres:11
+    image: postgres:14
     volumes:
       - pg-data:/var/lib/postgresql/data
     environment:
-      - POSTGRES_PASSWORD="DEV-_^+3{,ewt{_bgA@X!;(p,;na-}4x9h*Y"
-      - POSTGRES_USER=postgres
-      - POSTGRES_DB=decidim_quickstart
+      - POSTGRES_PASSWORD=DEV-_^+3{,ewt{_bgA@X!;(p,;na-}4x9h*Y
+      - POSTGRES_USER=decidim
+      - POSTGRES_DB=decidim_dev
     networks:
       - private
 

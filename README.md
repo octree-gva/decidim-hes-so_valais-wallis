@@ -41,17 +41,15 @@ A docker image is used for deployment, the docker image is ready for production,
 
 This app uses an Octree version of Decidim, where we do as few changes as possible to stay near the main branch. This instance does not have any divergence from the main branch of the open source repository Decidim. 
 
-
 <br /><br />
-<!--
 <h4 align="center">
     <br /><br />
-    <img src="https://github.com/octree-gva/meta/blob/main/decidim/static/hes-so_valais-wallis/mobile.png?raw=true" /><br /><br />
-    <img src="https://github.com/octree-gva/meta/blob/main/decidim/static/hes-so_valais-wallis/desktop.png?raw=true" /><br /><br />
+    <img src="https://github.com/octree-gva/meta/blob/main/decidim/static/participer_hevs/mobile_participer_hevs.png?raw=true" /><br /><br />
+    <img src="https://github.com/octree-gva/meta/blob/main/decidim/static/participer_hevs/desktop_participer_hevs.png?raw=true" /><br /><br />
 </h4>
--->
 
 <br /><br />
+
 <p align="center">
     <img src="https://raw.githubusercontent.com/octree-gva/meta/main/decidim/static/octree_and_decidim.png" height="90" alt="Decidim Installation by Octree" />
 </p>

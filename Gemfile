@@ -10,6 +10,8 @@ gem "decidim", "0.24.3"
 # gem "decidim-elections", "0.24.3"
 # gem "decidim-initiatives", "0.24.3"
 # gem "decidim-templates", "0.24.3"
+gem "decidim-decidim_awesome", "~> 0.7.2"
+gem "decidim-term_customizer", git: "https://github.com/mainio/decidim-module-term_customizer.git", branch: "master"
 
 gem "bootsnap", "~> 1.3"
 
@@ -23,6 +25,8 @@ gem "wicked_pdf", "~> 1.4"
 gem "hiredis", '~> 0.6.3'
 gem "redis", ">= 3.2.0"
 gem 'mini_racer'
+gem 'rack-attack', "~> 6.0"
+gem 'sidekiq', '~> 6.4', '>= 6.4.1'
 
 
 group :development, :test do

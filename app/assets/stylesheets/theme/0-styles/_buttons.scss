@@ -1,3 +1,7 @@
 /**
 * Example file: here you could customize buttons for example. 
  */
+a.button.muted:not(.hollow) {
+    color: #fff;
+    opacity: 0.45;
+}
