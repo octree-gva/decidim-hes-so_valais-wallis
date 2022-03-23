@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 # This migration comes from decidim (originally 20201128130723)
 
 class AddAllowPublicAccessToStaticPages < ActiveRecord::Migration[5.2]
@@ -8,7 +9,7 @@ class AddAllowPublicAccessToStaticPages < ActiveRecord::Migration[5.2]
     reversible do |direction|
       direction.up do
         # rubocop:disable Rails/SkipsModelValidations
-        Decidim::StaticPage.where(slug: "terms-and-conditions").update_all(
+        Decidim::StaticPage.where(slug: 'terms-and-conditions').update_all(
           allow_public_access: true
         )
         # rubocop:enable Rails/SkipsModelValidations

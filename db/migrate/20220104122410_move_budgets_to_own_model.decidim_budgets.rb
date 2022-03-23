@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 # This migration comes from decidim_budgets (originally 20200714103519)
 
 class MoveBudgetsToOwnModel < ActiveRecord::Migration[5.2]
@@ -48,12 +49,12 @@ class MoveBudgetsToOwnModel < ActiveRecord::Migration[5.2]
 
   # up methods
   def budget_components
-    @budget_components ||= Component.where(manifest_name: "budgets")
+    @budget_components ||= Component.where(manifest_name: 'budgets')
   end
 
   def create_budget_resource_from(component)
-    component_total_budget = if component["settings"].dig("global", "total_budget")
-                               component["settings"]["global"]["total_budget"]
+    component_total_budget = if component['settings'].dig('global', 'total_budget')
+                               component['settings']['global']['total_budget']
                              else
                                100_000_000
                              end
@@ -82,10 +83,10 @@ class MoveBudgetsToOwnModel < ActiveRecord::Migration[5.2]
   # down methods
 
   def revert_budget_to_component(resource)
-    component = Component.find_by(id: resource.decidim_component_id, manifest_name: "budgets")
-    component_settings = if resource.total_budget && component["settings"].try(:key?, "global")
-                           component["settings"]["global"].merge!(total_budget: resource.total_budget)
-                           component["settings"]
+    component = Component.find_by(id: resource.decidim_component_id, manifest_name: 'budgets')
+    component_settings = if resource.total_budget && component['settings'].try(:key?, 'global')
+                           component['settings']['global'].merge!(total_budget: resource.total_budget)
+                           component['settings']
                          end
 
     component.update!(

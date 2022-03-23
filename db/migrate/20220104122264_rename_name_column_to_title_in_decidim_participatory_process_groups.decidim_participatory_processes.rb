@@ -1,18 +1,21 @@
 # frozen_string_literal: true
+
 # This migration comes from decidim_participatory_processes (originally 20201013105520)
 
 class RenameNameColumnToTitleInDecidimParticipatoryProcessGroups < ActiveRecord::Migration[5.2]
   def up
     rename_column :decidim_participatory_process_groups, :name, :title
-    PaperTrail::Version.where(item_type: "Decidim::ParticipatoryProcessGroup").each do |version|
+    PaperTrail::Version.where(item_type: 'Decidim::ParticipatoryProcessGroup').each do |version|
       # rubocop:disable Rails/SkipsModelValidations
-      version.update_attribute(:object_changes, version.object_changes.gsub(/^name:/, "title:")) if version.object_changes.present?
+      if version.object_changes.present?
+        version.update_attribute(:object_changes, version.object_changes.gsub(/^name:/, 'title:'))
+      end
       # rubocop:enable Rails/SkipsModelValidations
 
-      next unless version.object.present? && version.object.has_key?("name")
+      next unless version.object.present? && version.object.has_key?('name')
 
       object = version.object
-      object["title"] = object.delete("name")
+      object['title'] = object.delete('name')
 
       # rubocop:disable Rails/SkipsModelValidations
       version.update_attribute(:object, object)
@@ -21,15 +24,17 @@ class RenameNameColumnToTitleInDecidimParticipatoryProcessGroups < ActiveRecord:
   end
 
   def down
-    PaperTrail::Version.where(item_type: "Decidim::ParticipatoryProcessGroup").each do |version|
+    PaperTrail::Version.where(item_type: 'Decidim::ParticipatoryProcessGroup').each do |version|
       # rubocop:disable Rails/SkipsModelValidations
-      version.update_attribute(:object_changes, version.object_changes.gsub(/^title:/, "name:")) if version.object_changes.present?
+      if version.object_changes.present?
+        version.update_attribute(:object_changes, version.object_changes.gsub(/^title:/, 'name:'))
+      end
       # rubocop:enable Rails/SkipsModelValidations
 
-      next unless version.object.present? && version.object.has_key?("title")
+      next unless version.object.present? && version.object.has_key?('title')
 
       object = version.object
-      object["name"] = object.delete("title")
+      object['name'] = object.delete('title')
 
       # rubocop:disable Rails/SkipsModelValidations
       version.update_attribute(:object, object)
