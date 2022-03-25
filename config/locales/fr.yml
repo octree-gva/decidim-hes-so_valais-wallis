@@ -16,3 +16,22 @@ fr:
           <a rel="license" target="_blank" href="http://creativecommons.org/licenses/by-sa/4.0/">
               Creative Commons Attribution-ShareAlike 4.0
           </a>
+  activemodel:
+    attributes:
+      internal_authorization_handler:
+        reference: Référence interne à la plateforme
+        email: Email stocké par la plateforme
+  decidim:
+    authorization_handlers:
+      internal_authorization_handler:
+        explanation: 
+         |
+          Lors de rencontres physiques ou de récolte de formulaire papier, la plateforme assigne
+          une référence unique aux utilisateurs ainsi inscris. 
+        fields:
+          reference: Référence interne
+          email: Email mémorisé par les services de la plateforme
+        name: Validation résérvée à la plateforme
+      internal_authorization_workflow:
+        name: Validation interne à la plateforme
+

@@ -5,16 +5,23 @@ services:
       context: .
       dockerfile: ./Dockerfile-dev
     environment:
+      - RAILS_ENV=development
+      - RACK_ENV=development
       - DATABASE_HOST=pg
       - SECRET_KEY_BASE="DEV-ahngae3ooCh5wool3xaefii8Neib7oc7mei2viejingaGhee7paephoneeThia6Ooshiexoab5ib1phirolah7tooMu3Oheixaigh7eeV5eef6Zei0dur9oth4zaicha"
       - DATABASE_USERNAME=decidim
       - DATABASE_PASSWORD=DEV-_^+3{,ewt{_bgA@X!;(p,;na-}4x9h*Y
       - DATABASE_DATABASE=decidim_dev
-      - RAILS_ENV=development
-      - RACK_ENV=development
       - PORT=3000
+      # In dev, run only in one thread, easier to debug DB connection issues.
       - RAILS_MAX_THREADS=1
+      # In dev, you will serve assets as you don't have here a configured reverse proxy
       - RAILS_SERVE_STATIC_FILES=true
+      # Setup mailcatcher connexion
+      - SMTP_ADDRESS=mailer
+      - SMTP_PORT=1025
+      - SMTP_STARTTLS_AUTO=disabled
+      - SMTP_VERIFY_MODE=none
     ports:
       - 3000:3000
     depends_on:
@@ -24,8 +31,11 @@ services:
       - private
       - default
     volumes:
+      # Bind files you will update.
       - ./app/assets/stylesheets/theme:/home/decidim/app/app/assets/stylesheets/theme
       - ./app/views:/home/decidim/app/app/views
+      - ./app/verifications:/home/decidim/app/app/verifications
+      - ./db:/home/decidim/app/db
 
   pg:
     image: postgres:14
@@ -41,7 +51,6 @@ services:
   mailer:  
     image: tophfr/mailcatcher
     ports:
-      - "1025:1025"
       - "1080:80"
     networks:
       - private

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
 
@@ -14,7 +16,7 @@ Rails.application.configure do
 
   # Enable/disable caching. By default caching is disabled.
   # Run rails dev:cache to toggle caching.
-  if Rails.root.join('tmp', 'caching-dev.txt').exist?
+  if Rails.root.join('tmp/caching-dev.txt').exist?
     config.action_controller.perform_caching = true
 
     config.cache_store = :memory_store
@@ -31,8 +33,6 @@ Rails.application.configure do
 
   # Don't care if the mailer can't send.
   config.action_mailer.raise_delivery_errors = false
-  config.action_mailer.delivery_method = :letter_opener_web
-  config.action_mailer.default_url_options = { port: 3000 }
 
   config.action_mailer.perform_caching = false
 
@@ -63,4 +63,16 @@ Rails.application.configure do
 
   # No precompilation on demand on first request
   config.assets.check_precompiled_asset = false
+  config.action_mailer.delivery_method = :smtp
+
+  config.action_mailer.smtp_settings = {
+    address: ENV.fetch('SMTP_ADDRESS', ''),
+    port: ENV.fetch('SMTP_PORT', '587'),
+    authentication: ENV.fetch('SMTP_AUTHENTICATION', 'plain'),
+    user_name: ENV.fetch('SMTP_USERNAME', ''),
+    password: ENV.fetch('SMTP_PASSWORD', ''),
+    domain: ENV.fetch('SMTP_DOMAIN') { ENV.fetch('SMTP_ADDRESS', '') },
+    enable_starttls_auto: env_enabled?('SMTP_STARTTLS_AUTO', 'enabled'),
+    openssl_verify_mode: ENV.fetch('SMTP_VERIFY_MODE', 'none')
+  }
 end
