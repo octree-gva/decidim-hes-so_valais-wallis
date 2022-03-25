@@ -41,6 +41,72 @@ A docker image is used for deployment, the docker image is ready for production,
 
 This app uses an Octree version of Decidim, where we do as few changes as possible to stay near the main branch. This instance does not have any divergence from the main branch of the open source repository Decidim. 
 
+# Run your own locally in 5min
+Clone this repository and: 
+
+```
+# TL;DR
+docker-compose down -v
+docker-compose up -d
+docker-compose run --rm -w /home/decidim/app app rails db:migrate
+docker-compose run --rm -w /home/decidim/app app rails db:seed
+docker-compose restart app
+# Wait a bit, and open "http://localhost:3000"
+```
+
+### Run locally your HEVS instance
+Be sure to have docker installed. 
+
+This procedure will use the following ports: 
+
+* `3000`: The decidim application
+* `1080`: A smtp-mailcatcher that will catch all the emails. No emails will be sent in development.
+
+```sh
+docker-compose up -d
+```
+
+Execute the migrations to create postgres tables
+```sh
+docker-compose run --rm -w /home/decidim/app app rails db:migrate
+```
+
+Seed the database
+```sh
+docker-compose run --rm -w /home/decidim/app app rails db:seed
+```
+
+Restart the app
+```sh
+docker-compose restart app
+```
+
+To sign in as an administrator:
+1. Access [localhost:3000/admin](http://localhost:3000/admin)
+2. Sign in with `admin@hevs.ch`, `changeme01`
+3. You are in as an admin
+
+To sign in as a system administrator:
+1. Access [localhost:3000/system](http://localhost:3000/system)
+2. Sign in with `sysadmin@hevs.ch`, `changeme01`
+3. You are in as a system administrator
+
+## Reset your local environment
+
+Remove all containers and volumes
+```
+docker-compose down -v
+```
+Start again the installation procedure.
+
+## Read the logs
+
+```
+docker-compose logs -t app
+# Or if you want to follow them
+docker-compose logs -ft app
+```
+
 <br /><br />
 <h4 align="center">
     <br /><br />

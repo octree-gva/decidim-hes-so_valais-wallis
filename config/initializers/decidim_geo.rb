@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # Geocoder configuration
 Decidim.configure do |config|
   if ENV.fetch('GEO_HERE_API', '').present?

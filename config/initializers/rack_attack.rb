@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 safelist_ips = ENV.fetch('SAFELIST_IPS', '')
 if safelist_ips.present?
   safelist_ips.split(',').each do |safelist_ip|
@@ -11,7 +13,9 @@ if %w[true enabled 1].include?(ENV.fetch('DECIDIM_BLOCK_SYSTEM', 'disabled'))
     # Requests are blocked if the return value is truthy
     if request.path.start_with?('/system')
       !(Decidim.system_accesslist_ips.any? &&
-          Decidim.system_accesslist_ips.map { |ip_address| IPAddr.new(ip_address).include?(IPAddr.new(request.ip)) }.any?)
+          Decidim.system_accesslist_ips.map do |ip_address|
+            IPAddr.new(ip_address).include?(IPAddr.new(request.ip))
+          end.any?)
     end
   end
 end

@@ -106,7 +106,7 @@ Decidim.configure do |config|
   # end
 
   # Currency unit
-  # config.currency_unit = "€"
+  config.currency_unit = 'CHF'
 
   # Defines the quality of image uploads after processing. Image uploads are
   # processed by Decidim, this value helps reduce the size of the files.
@@ -238,7 +238,7 @@ Decidim.configure do |config|
   config.default_csv_col_sep = ';'
 
   # The list of roles a user can have, not considering the space-specific roles.
-  # config.user_roles = %w(admin user_manager)
+  config.user_roles = %w[admin user_manager]
 
   # The list of visibility options for amendments. An Array of Strings that
   # serve both as locale keys and values to construct the input collection in
@@ -253,7 +253,7 @@ Decidim.configure do |config|
   #
   # Enable machine translations
   config.enable_machine_translations = false
-  
+
   #
   # If you want to enable machine translation you can create your own service
   # to interact with third party service to translate the user content.

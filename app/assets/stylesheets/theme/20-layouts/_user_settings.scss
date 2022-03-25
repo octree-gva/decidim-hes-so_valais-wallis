@@ -1,0 +1,8 @@
+/**
+ * Remove authorization tab.
+*/
+.authorizations-list a[href="/authorizations/new?handler=internal_authorization_handler"]  {
+  display: none;
+  visibility: hidden;
+  opacity: 0;
+}
