@@ -12,6 +12,7 @@ gem "decidim", "0.24.3"
 # gem "decidim-templates", "0.24.3"
 gem "decidim-decidim_awesome", "~> 0.7.2"
 gem "decidim-term_customizer", git: "https://github.com/mainio/decidim-module-term_customizer.git", branch: "master"
+gem "decidim-direct_verifications", "~> 1.0"
 
 gem "bootsnap", "~> 1.3"
 

@@ -15,13 +15,11 @@ services:
       - PORT=3000
       # In dev, run only in one thread, easier to debug DB connection issues.
       - RAILS_MAX_THREADS=1
-      # In dev, you will serve assets as you don't have here a configured reverse proxy
+      # In dev, you will serve assets as you don't have here a configured reverse-proxy
       - RAILS_SERVE_STATIC_FILES=true
-      # Setup mailcatcher connexion
-      - SMTP_ADDRESS=mailer
-      - SMTP_PORT=1025
-      - SMTP_STARTTLS_AUTO=disabled
-      - SMTP_VERIFY_MODE=none
+      # Setup mailcatcher (see config/environments/development)
+      - SMTP_DOMAIN=mailer
+      - SMTP_PORT=25
     ports:
       - 3000:3000
     depends_on:
@@ -30,12 +28,7 @@ services:
     networks:
       - private
       - default
-    volumes:
-      # Bind files you will update.
-      - ./app/assets/stylesheets/theme:/home/decidim/app/app/assets/stylesheets/theme
-      - ./app/views:/home/decidim/app/app/views
-      - ./app/verifications:/home/decidim/app/app/verifications
-      - ./db:/home/decidim/app/db
+
 
   pg:
     image: postgres:14
@@ -57,7 +50,6 @@ services:
       - default
 
 volumes:
-  node_modules: {}
   pg-data: {}
 networks:
   private:
