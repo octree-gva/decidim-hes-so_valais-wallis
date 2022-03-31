@@ -296,6 +296,9 @@ GEM
       vcr (~> 6.0)
       webmock (~> 3.6)
       wisper-rspec (~> 1.0)
+    decidim-direct_verifications (1.0)
+      decidim-admin (>= 0.23.0)
+      decidim-core (>= 0.23.0)
     decidim-forms (0.24.3)
       decidim-core (= 0.24.3)
       wicked_pdf (~> 1.4)
@@ -855,6 +858,7 @@ DEPENDENCIES
   decidim (= 0.24.3)
   decidim-decidim_awesome (~> 0.7.2)
   decidim-dev (= 0.24.3)
+  decidim-direct_verifications (~> 1.0)
   decidim-term_customizer!
   faker (~> 2.14)
   hiredis (~> 0.6.3)

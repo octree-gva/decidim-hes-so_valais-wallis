@@ -2,18 +2,14 @@
 
 module Decidim
   class InternalAuthorizationHandler < AuthorizationHandler
-    attribute :reference, String
     attribute :email, String
-    
-    validates :reference, presence: true
-    validates :email, presence: true
 
     def metadata
-      super.merge(reference: reference, email: email)
+      super.merge(email: email)
     end
 
     def unique_id
-      "#{email}#{reference}"
+      nil
     end
   end
 end

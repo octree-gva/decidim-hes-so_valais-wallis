@@ -66,13 +66,7 @@ Rails.application.configure do
   config.action_mailer.delivery_method = :smtp
 
   config.action_mailer.smtp_settings = {
-    address: ENV.fetch('SMTP_ADDRESS', ''),
-    port: ENV.fetch('SMTP_PORT', '587'),
-    authentication: ENV.fetch('SMTP_AUTHENTICATION', 'plain'),
-    user_name: ENV.fetch('SMTP_USERNAME', ''),
-    password: ENV.fetch('SMTP_PASSWORD', ''),
-    domain: ENV.fetch('SMTP_DOMAIN') { ENV.fetch('SMTP_ADDRESS', '') },
-    enable_starttls_auto: env_enabled?('SMTP_STARTTLS_AUTO', 'enabled'),
-    openssl_verify_mode: ENV.fetch('SMTP_VERIFY_MODE', 'none')
+    address: ENV.fetch('SMTP_ADDRESS', 'mailer'),
+    port: ENV.fetch('SMTP_PORT', '25'),
   }
 end

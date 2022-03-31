@@ -47,6 +47,7 @@ Clone this repository and:
 ```
 # TL;DR
 docker-compose down -v
+docker-compose build --no-cache
 docker-compose up -d
 docker-compose run --rm -w /home/decidim/app app rails db:migrate
 docker-compose run --rm -w /home/decidim/app app rails db:seed
@@ -60,7 +61,7 @@ Be sure to have docker installed.
 This procedure will use the following ports: 
 
 * `3000`: The decidim application
-* `1080`: A smtp-mailcatcher that will catch all the emails. No emails will be sent in development.
+* `1080`: A smtp-mailcatcher that will catch all the emails. No emails will be sent in local development (even if RAILS_ENV=production).
 
 ```sh
 docker-compose up -d
@@ -74,6 +75,14 @@ docker-compose run --rm -w /home/decidim/app app rails db:migrate
 Seed the database
 ```sh
 docker-compose run --rm -w /home/decidim/app app rails db:seed
+# Organization created? ✅
+
+# Admin: admin@hevs.ch
+# Sysadmin: sysadmin@hevs.ch
+
+# Help page? ✅
+# Homepage? ✅
+# Terms and Conditions? ✅
 ```
 
 Restart the app
@@ -106,6 +115,10 @@ docker-compose logs -t app
 # Or if you want to follow them
 docker-compose logs -ft app
 ```
+
+## Emails
+Emails are sent to a smtp server (mailcatcher) and won't be relayed.
+You can access emails in `http://localhost:1080` UI
 
 <br /><br />
 <h4 align="center">
