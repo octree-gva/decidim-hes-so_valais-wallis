@@ -12,7 +12,7 @@ organization = Decidim::Organization.first || Decidim::Organization.create!(
     Decidim::Faker::Localized.sentence(word_count: 15)
   end,
   default_locale: Decidim.default_locale,
-  available_locales: Decidim.available_locales,
+  available_locales: [:fr, :de, :en],
   reference_prefix: 'HEVS',
   available_authorizations: ["csv_census", "internal_authorization_handler"],
   users_registration_mode: :enabled,

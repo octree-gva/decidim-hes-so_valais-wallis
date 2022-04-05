@@ -28,6 +28,8 @@ services:
     networks:
       - private
       - default
+    volumes:
+      - ./.uploads:/home/decidim/app/public/uploads
 
 
   pg:
